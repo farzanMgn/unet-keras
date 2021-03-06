@@ -29,34 +29,30 @@ class UNet(Model):
         conv3 = double_conv(pool2, n_filters * 4)
         pool3 = pooling(conv3)
 
-        # conv4 = double_conv(pool3, n_filters * 8)
-        # pool4 = pooling(conv4)
+        conv4 = double_conv(pool3, n_filters * 8)
+        pool4 = pooling(conv4)
 
         conv5 = double_conv(pool4, n_filters * 16)
 
         # expansive path
         up6 = deconv(conv5, n_filters * 8)
-        # up6 = merge(conv4, up6)
-        up6 = merge(conv3, up6)
+        up6 = merge(conv4, up6)
         conv6 = double_conv(up6, n_filters * 8)
 
         up7 = deconv(conv6, n_filters * 4)
-        # up7 = merge(conv3, up7)
-        up7 = merge(conv2, up7)
+        up7 = merge(conv3, up7)
         conv7 = double_conv(up7, n_filters * 4)
 
         up8 = deconv(conv7, n_filters * 2)
-        # up8 = merge(conv2, up8)
-        up8 = merge(conv1, up8)
+        up8 = merge(conv2, up8)
         conv8 = double_conv(up8, n_filters * 2)
 
-        # up9 = deconv(conv8, n_filters * 1)
-        # up9 = merge(conv1, up9)
-        # conv9 = double_conv(up9, n_filters * 1)
+        up9 = deconv(conv8, n_filters * 1)
+        up9 = merge(conv1, up9)
+        conv9 = double_conv(up9, n_filters * 1)
 
         # define output layer
-        # output = single_conv(conv9, 1, 1)
-        output = single_conv(conv8, 1, 1)
+        output = single_conv(conv9, 1, 1)
 
         # initialize Keras Model with defined above input and output layers
         super(UNet, self).__init__(inputs = input, outputs = output)
