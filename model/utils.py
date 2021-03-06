@@ -33,8 +33,9 @@ def double_conv(input_tensor, n_filters, kernel_size = 3):
     return x
 
 # function that defines 2D transposed convolutional (Deconvolutional) layer
-def deconv(input_tensor, n_filters, kernel_size = 3, stride = 2):
-    x = Conv2DTranspose(filters = n_filters, kernel_size = (kernel_size, kernel_size), strides = (stride, stride), padding = 'same')(input_tensor)
+# def deconv(input_tensor, n_filters, kernel_size = 3, stride = 2):
+def deconv(input_tensor, n_filters, kernel_size = 2):
+    x = Conv2DTranspose(filters = n_filters, kernel_size = (kernel_size, kernel_size), padding = 'same')(input_tensor)
     return x
 
 # function that defines Max Pooling layer with pool size 2 and applies Dropout
