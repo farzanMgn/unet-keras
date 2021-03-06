@@ -32,23 +32,23 @@ class UNet(Model):
         # conv4 = double_conv(pool3, n_filters * 8)
         # pool4 = pooling(conv4)
 
-        conv5 = double_conv(pool4, n_filters * 16)
+        conv5 = double_conv(pool4, n_filters * 8)
 
         # expansive path
-        up6 = deconv(conv5, n_filters * 8)
+        up6 = deconv(conv5, n_filters * 4)
         # up6 = merge(conv4, up6)
         up6 = merge(conv3, up6)
-        conv6 = double_conv(up6, n_filters * 8)
+        conv6 = double_conv(up6, n_filters * 4)
 
-        up7 = deconv(conv6, n_filters * 4)
+        up7 = deconv(conv6, n_filters * 2)
         # up7 = merge(conv3, up7)
         up7 = merge(conv2, up7)
-        conv7 = double_conv(up7, n_filters * 4)
+        conv7 = double_conv(up7, n_filters * 2)
 
-        up8 = deconv(conv7, n_filters * 2)
+        up8 = deconv(conv7, n_filters * 1)
         # up8 = merge(conv2, up8)
         up8 = merge(conv1, up8)
-        conv8 = double_conv(up8, n_filters * 2)
+        conv8 = double_conv(up8, n_filters * 1)
 
         # up9 = deconv(conv8, n_filters * 1)
         # up9 = merge(conv1, up9)
