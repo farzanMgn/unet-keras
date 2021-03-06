@@ -40,7 +40,7 @@ def deconv(input_tensor, n_filters, kernel_size = 3, stride = 2):
 # function that defines Max Pooling layer with pool size 2 and applies Dropout
 def pooling(input_tensor, dropout_rate = 0.1):
     x = MaxPooling2D(pool_size = (2, 2))(input_tensor)
-    x = Dropout(rate = dropout_rate)(x)
+    # x = Dropout(rate = dropout_rate)(x)
     return x
 
 # function that merges two layers (Concatenate)
